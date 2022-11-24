@@ -1,0 +1,95 @@
+.registerwrapper {
+	width: 635px;
+	height: 600px;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: whitesmoke;
+}
+.registerlabel {
+	text-align: center;
+	font-family: "Homenaje", sans-serif;
+	font-size: 20px;
+	padding-top: 81px;
+}
+.registername {
+	flex-wrap: wrap;
+	text-align: center;
+	background-color: white;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px;
+	height: 60px;
+	border: 1px solid #0d160b;
+	display: flex;
+	flex-direction: row;
+}
+.registerinput {
+	width: 77%;
+	flex-wrap: nowrap;
+	border: 0px;
+	font-size: 20px;
+	height: 100%;
+	margin-left: 3%;
+}
+.registername * {
+	height: 56px;
+}
+.registeremail {
+	text-align: center;
+	display: flex;
+	background-color: white;
+	margin-top: 19px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px;
+	height: 60px;
+	border: 1px solid #0d160b;
+}
+.registeremail img {
+	height: 56px;
+}
+.registerpass {
+	text-align: center;
+	background-color: white;
+	margin-top: 19px;
+	margin-left: auto;
+	display: flex;
+	margin-right: auto;
+	width: 400px;
+	height: 60px;
+	border: 1px solid #0d160b;
+}
+.registerpass * {
+	height: 56px;
+}
+
+.name {
+	margin-right: 30px;
+}
+
+.registerbutton {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+
+	margin-top: 10%;
+	width: 63%;
+	height: 74px;
+	border: none;
+	background-color: #fcaf19;
+
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	font-size: 38px;
+}
+button.registerbutton:active {
+	background: #b47f15;
+}
+
+.registerbutton * {
+	margin: auto;
+}
