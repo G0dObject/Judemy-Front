@@ -22,7 +22,7 @@ function Header() {
 						</a>
 
 						<a href="/register" type="button" className="singin">
-							<p>SingIn</p>
+							<p>SignUp</p>
 						</a>
 					</div>
 				</div>

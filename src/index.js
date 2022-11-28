@@ -1,18 +1,22 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import style from "./scss/app.scss";
-import { store } from "./store";
+import Store from "./store/store";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import { data } from "autoprefixer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+export const Context = createContext();
+export const store = new Store();
+
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<Provider store={store}>
+			<Context.Provider value={store}>
 				<App />
-			</Provider>
+			</Context.Provider>
 		</BrowserRouter>
 	</React.StrictMode>
 );

@@ -1,86 +1,155 @@
-import Person from "../assets/Person.png";
-import Lock from "../assets/Lock.png";
-import { useRef } from "react";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import React, { useState, useRef } from "react";
 
-async function postData(url = "", data = {}) {
-	const response = await fetch(url, {
-		method: "POST", // *GET, POST, PUT, DELETE, etc.
-		mode: "cors", // no-cors, *cors, same-origin
-		cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-		credentials: "same-origin", // include, *same-origin, omit
-		headers: {
-			"Content-Type": "application/json",
-			"Access-Control-Allow-Origin": "*",
-		},
-		redirect: "follow", // manual, *follow, error
-		referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-		body: JSON.stringify(data), // body data type must match "Content-Type" header
-	});
-	return response;
-}
+import { store } from "../../index";
+import {
+	MDBContainer,
+	MDBTabs,
+	MDBTabsItem,
+	MDBTabsLink,
+	MDBTabsContent,
+	MDBTabsPane,
+	MDBBtn,
+	MDBInput,
+	MDBCheckbox,
+} from "mdb-react-ui-kit";
 
-function Login() {
-	const username = useRef("name");
-	const password = useRef("password");
+function LoginTest({ isLogin }) {
+	const [justifyActive, setJustifyActive] = useState(isLogin ? "tab1" : "tab2");
 
-	if (localStorage.getItem("token") === null) {
-		localStorage.setItem("token", "ff");
-		postData("https://localhost:5001/api/Login/Login");
-	}
+	const handleJustifyClick = (value) => {
+		if (value === justifyActive) {
+			return;
+		}
+		setJustifyActive(value);
+	};
+	const email = useRef();
+	const username = useRef();
+	const password = useRef();
 
-	function onClickHandler() {
-		let response = postData("https://localhost:5001/api/Login/Login", {
-			userName: username.current.value,
-			password: password.current.value,
-		});
-		response.then((response) => {
-			response.text().then(function (text) {
-				console.log(JSON.parse(text).token);
-			});
-		});
-	}
+	const lemail = useRef();
+	const lpassword = useRef();
+
 	return (
-		<div className="loginwrapper">
-			<div className="loginlabel">Sing up to Judemy</div>
-			<div className="loginname">
-				<img src={Person} alt="Person"></img>
-				<input
-					ref={username}
-					className="logininput"
-					type="text"
-					id="name"
-					name="name"
-					required
-					minLength="4"
-					maxLength="10"
-					defaultValue={"Username"}
-				></input>
-			</div>
-
-			<div className="loginpass">
-				<img src={Lock} alt="lock"></img>
-				<input
-					ref={password}
-					className="logininput"
-					type="password"
-					id="password"
-					name="password"
-					defaultValue={"password"}
-					required
-					minLength="6"
-					maxLength="16"
-				></input>
-			</div>
-			<button
-				onClick={() => {
-					onClickHandler();
-				}}
-				className="registerbutton"
+		<MDBContainer className="p-3 my-5 d-flex flex-column w-50 ">
+			<MDBTabs
+				pills
+				justify
+				className="mb-5 d-flex flex-row justify-content-between "
 			>
-				<div>Sumbit</div>
-			</button>
-		</div>
+				<MDBTabsItem>
+					<MDBTabsLink
+						className="btn-dark text-black"
+						onClick={() => handleJustifyClick("tab1")}
+						active={justifyActive === "tab1"}
+					>
+						Login
+					</MDBTabsLink>
+				</MDBTabsItem>
+				<MDBTabsItem>
+					<MDBTabsLink
+						className="btn-dark text-black"
+						onClick={() => handleJustifyClick("tab2")}
+						active={justifyActive === "tab2"}
+					>
+						Register
+					</MDBTabsLink>
+				</MDBTabsItem>
+			</MDBTabs>
+
+			<MDBTabsContent>
+				<MDBTabsPane show={justifyActive === "tab1"}>
+					<MDBInput
+						wrapperClass="mb-4"
+						label="Email address"
+						id="form1"
+						required
+						maxLength="80"
+						type="email"
+						inputRef={lemail}
+					/>
+					<MDBInput
+						wrapperClass="mb-4 "
+						label="Password"
+						id="form2"
+						required
+						type="password"
+						inputRef={lpassword}
+					/>
+
+					<div className="d-flex justify-content-between mx-4 mb-4">
+						<MDBCheckbox
+							name="flexCheck"
+							value=""
+							id="flexCheckDefault"
+							label="Remember me"
+						/>
+						<a href="!#">Forgot password?</a>
+					</div>
+
+					<MDBBtn
+						className="mb-4 w-100 bg-dark "
+						onClick={() => {
+							store.login(lemail.current.value, lpassword.current.value);
+						}}
+					>
+						Sign in
+					</MDBBtn>
+					<p className="text-center">
+						Not a member? <a href="register">Register</a>
+					</p>
+				</MDBTabsPane>
+
+				<MDBTabsPane show={justifyActive === "tab2"}>
+					<MDBInput
+						inputRef={username}
+						wrapperClass="mb-4"
+						label="Username"
+						required
+						id="form1"
+						type="text"
+					/>
+					<MDBInput
+						wrapperClass="mb-4"
+						label="Email"
+						inputRef={email}
+						id="form1"
+						type="email"
+					/>
+					<MDBInput
+						inputRef={password}
+						wrapperClass="mb-4"
+						label="Password"
+						required
+						id="form1"
+						type="password"
+					/>
+
+					<div className="d-flex justify-content-center mb-4">
+						<MDBCheckbox
+							name="flexCheck"
+							id="flexCheckDefault"
+							label="I have read and agree to the terms"
+						/>
+					</div>
+
+					<MDBBtn
+						className="mb-4 w-100 bg-dark"
+						onClick={() => {
+							store.registration(
+								username.current.value,
+								email.current.value,
+								password.current.value
+							);
+						}}
+					>
+						Sign up
+					</MDBBtn>
+				</MDBTabsPane>
+			</MDBTabsContent>
+		</MDBContainer>
 	);
 }
 
-export default Login;
+export default LoginTest;

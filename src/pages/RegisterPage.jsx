@@ -1,11 +1,11 @@
 import Header from "../components/Header";
-import Register from "../components/Login/Register";
+import Login from "../components/Login/Login";
 
 function RegisterPages() {
 	return (
 		<>
 			<Header></Header>
-			<Register></Register>
+			<Login isLogin={false}></Login>
 		</>
 	);
 }

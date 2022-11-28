@@ -1,11 +1,11 @@
 import Header from "../components/Header";
-import LoginTest from "../components/Login/LoginTest";
+import Login from "../components/Login/Login";
 
 function LoginPage() {
 	return (
 		<>
 			<Header></Header>
-			<LoginTest></LoginTest>
+			<Login isLogin={true}></Login>
 		</>
 	);
 }

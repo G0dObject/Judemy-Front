@@ -1,4 +1,3 @@
-import { Route } from "react-router-dom";
 import Content from "../components/Content";
 import Header from "../components/Header";
 
