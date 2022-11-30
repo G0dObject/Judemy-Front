@@ -1,8 +1,10 @@
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { observer } from "mobx-react-lite";
 
-import { store } from "../../index";
+import { Context } from "../../index";
+
 import {
 	MDBContainer,
 	MDBTabs,
@@ -30,6 +32,8 @@ function LoginTest({ isLogin }) {
 
 	const lemail = useRef();
 	const lpassword = useRef();
+
+	const store = useContext(Context);
 
 	return (
 		<MDBContainer className="p-3 my-5 d-flex flex-column w-50 ">
@@ -152,4 +156,4 @@ function LoginTest({ isLogin }) {
 	);
 }
 
-export default LoginTest;
+export default observer(LoginTest);
