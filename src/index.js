@@ -10,13 +10,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 export const store = new Store();
 export const Context = createContext(store);
-console.log(store.isAuth);
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<Context.Provider value={store}>
-				<App />
-			</Context.Provider>
-		</BrowserRouter>
-	</React.StrictMode>
+	<BrowserRouter>
+		<Context.Provider value={store}>
+			<App />
+		</Context.Provider>
+	</BrowserRouter>
 );

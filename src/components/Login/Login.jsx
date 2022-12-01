@@ -16,6 +16,7 @@ import {
 	MDBInput,
 	MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 function LoginTest({ isLogin }) {
 	const [justifyActive, setJustifyActive] = useState(isLogin ? "tab1" : "tab2");
@@ -101,7 +102,7 @@ function LoginTest({ isLogin }) {
 						Sign in
 					</MDBBtn>
 					<p className="text-center">
-						Not a member? <a href="register">Register</a>
+						Not a member? <Link to="/register">Register</Link>
 					</p>
 				</MDBTabsPane>
 

@@ -1,0 +1,58 @@
+.courseBlock {
+	.course {
+		width: 100%;
+		margin: 10px;
+		display: flex;
+
+		.download {
+			margin-top: auto;
+
+			justify-content: center;
+
+			display: flex;
+			* {
+				font-size: 30px;
+			}
+		}
+
+		.uploader {
+			opacity: 0.8;
+			font-weight: bold;
+		}
+		.text {
+			text-align: left;
+			flex: auto;
+		}
+		.label {
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.uploader {
+			font-size: 13px;
+		}
+		img {
+			margin-right: auto;
+			margin-right: 1.6rem;
+		}
+		img:hover {
+			background-color: #d2d7dd;
+			opacity: 0.7;
+		}
+	}
+	width: 1280px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 15px;
+
+	height: 150px;
+	display: flex;
+	border: solid;
+	border-width: 2px;
+	transition: all 0.2s ease-in-out;
+}
+.CourseBlock:hover {
+	background-color: #d2d7dd;
+}

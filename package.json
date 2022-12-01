@@ -27,7 +27,7 @@
 	"scripts": {
 		"start": "set HTTPS=true&&set SSL_CRT_FILE=./.cert/cert.pem&&set SSL_KEY_FILE=./.cert/key.pem&&react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"test": "set --host=192.168.0.102 set HTTPS=true&&set SSL_CRT_FILE=./.cert/cert.pem&&set SSL_KEY_FILE=./.cert/key.pem&&react-scripts start",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {

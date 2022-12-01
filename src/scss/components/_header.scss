@@ -70,6 +70,19 @@
 	background: #fbfffe;
 	flex-wrap: wrap;
 }
+
+.dropdown-item:hover {
+	border-radius: unset !important;
+	background-color: #fdaf19 !important;
+}
+.logout {
+	font-family: "Homenaje", sans-serif;
+	font-style: normal;
+}
+.faq {
+	font-family: "Homenaje", sans-serif;
+	font-style: normal;
+}
 .singin {
 	font-family: "Homenaje", sans-serif;
 	font-style: normal;

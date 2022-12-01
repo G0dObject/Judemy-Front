@@ -1,11 +1,13 @@
 import { makeAutoObservable, makeObservable } from "mobx";
 import AuthService from "../services/AuthService";
-import axios from "axios";
-import { API_URL } from "../http";
-
+import * as mobx from "mobx";
+import { Link } from "react-router-dom";
+import { render } from "@testing-library/react";
 export default class Store {
 	constructor() {
 		makeAutoObservable(this);
+		this.load();
+		this.autoSave(this, this.save.bind(this));
 	}
 	user = {};
 	isAuth = false;
@@ -13,9 +15,29 @@ export default class Store {
 	setAuth(bool) {
 		this.isAuth = bool;
 	}
-
 	setUser(user) {
 		this.user = user;
+	}
+
+	load() {
+		if (localStorage.getItem("store") != null) {
+			const data = localStorage.getItem("store");
+			Object.assign(this, JSON.parse(data));
+		}
+	}
+	autoSave(store, save) {
+		let firstRun = true;
+		mobx.autorun(() => {
+			const json = JSON.stringify(mobx.toJS(store));
+			if (!firstRun) {
+				save(json);
+			}
+			firstRun = false;
+		});
+	}
+
+	save(json) {
+		localStorage.setItem("store", json);
 	}
 
 	async login(email, password) {
@@ -24,9 +46,8 @@ export default class Store {
 			console.log(response);
 			localStorage.setItem("token", response.data.token);
 			this.setAuth(true);
-			console.log(this.isAuth);
 			this.setUser(response.data.username);
-			console.log(response.data.username);
+			window.location.href = "/";
 		} catch (e) {
 			console.log(e.response?.data?.message);
 		}
